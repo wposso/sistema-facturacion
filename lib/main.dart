@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:sistema_facturacion/pantallas/dashboard/providers/mouse_region_menu.dart';
+import 'package:sistema_facturacion/pantallas/layout/layout_content.dart';
+import 'package:sistema_facturacion/pantallas/layout/providers/mouse_region_menu.dart';
 import 'package:sistema_facturacion/routes/routes.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => MouseRegionMenu())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => MouseRegionMenu()),
+        ChangeNotifierProvider(create: (_) => ScreenProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
       title: 'SISTEMA DE FACTURACIÓN',
-      initialRoute: 'Dashboard',
+      initialRoute: 'InicioSesion',
       routes: routes,
     );
   }

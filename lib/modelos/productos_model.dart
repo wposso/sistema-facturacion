@@ -21,6 +21,14 @@ class ProductosModel {
 }
 
 class Productos {
+  double get totalPrecioVenta {
+    return productosLista.fold(0, (sum, item) => sum + item.precioVenta);
+  }
+
+  double get totalPrecioCompra {
+    return productosLista.fold(0, (sum, item) => sum + item.precioCompra);
+  }
+
   final List<ProductosModel> productosLista = [
     ProductosModel(
       "Arroz Diana 1Kg",
@@ -123,3 +131,14 @@ class Productos {
     ),
   ];
 }
+
+List<String> columnasProductos = [
+  'PRODUCTO',
+  'CÓDIGO',
+  'CATEGORÍA',
+  'STOCK',
+  'COMPRA',
+  'VENTA',
+  'DETALLE',
+  '',
+];
