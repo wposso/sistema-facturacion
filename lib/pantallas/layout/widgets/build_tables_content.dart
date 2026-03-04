@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:sistema_facturacion/pantallas/layout/providers/forms_controller_provider.dart';
 import 'package:sistema_facturacion/pantallas/layout/widgets/build_form_container.dart';
 import 'package:sistema_facturacion/theme/theme_colors.dart';
 
@@ -34,6 +36,7 @@ class BuildTablesContent extends StatelessWidget {
   }
 
   Widget _buildTableOptionsContent(BuildContext context, int count, message1) {
+    final fpc = Provider.of<FormsControllerProvider>(context);
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: Row(
@@ -78,101 +81,11 @@ class BuildTablesContent extends StatelessWidget {
                 message: 'Agregar un $message1',
                 color: themeGreenColor,
                 isPrimary: true,
-                onPress: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                        child: Container(
-                          width: 650,
-                          height: MediaQuery.of(context).size.height * 2,
-                          constraints: BoxConstraints(
-                            maxHeight: MediaQuery.of(context).size.height * 0.9,
-                          ),
-                          decoration: BoxDecoration(
-                            color: themeBackgroundColor,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 20,
-                                offset: Offset(0, 10),
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: BuildGenericForm(
-                              title: 'Agregar producto',
-                              subtitle:
-                                  'Complete los campos para registrar un nuevo producto',
-                              fields: [
-                                FormFieldConfig(
-                                  label: 'Nombre del producto',
-                                  type: FormFieldType.text,
-                                  hintText: 'Ej. Laptop HP Pavilion',
-                                  icon: FontAwesomeIcons.box,
-                                  required: true,
-                                  onSaved: (value) => print('Nombre: $value'),
-                                ),
-                                FormFieldConfig(
-                                  label: 'Código de referencia',
-                                  type: FormFieldType.text,
-                                  hintText: 'Ej. LP-HP-001',
-                                  icon: FontAwesomeIcons.barcode,
-                                  required: true,
-                                ),
-                                FormFieldConfig(
-                                  label: 'Categoría',
-                                  type: FormFieldType.select,
-                                  hintText: 'Seleccionar categoría',
-                                  icon: FontAwesomeIcons.tags,
-                                  required: true,
-                                ),
-                                FormFieldConfig(
-                                  label: 'Precio de compra',
-                                  type: FormFieldType.currency,
-                                  hintText: '0',
-                                  icon: FontAwesomeIcons.cartShopping,
-                                  required: true,
-                                ),
-                                FormFieldConfig(
-                                  label: 'Precio de venta',
-                                  type: FormFieldType.currency,
-                                  hintText: '0',
-                                  icon: FontAwesomeIcons.tags,
-                                  required: true,
-                                ),
-                                FormFieldConfig(
-                                  label: 'Cantidad en stock',
-                                  type: FormFieldType.number,
-                                  hintText: '0',
-                                  icon: FontAwesomeIcons.cubes,
-                                  required: true,
-                                ),
-                                FormFieldConfig(
-                                  label: 'Detalle del producto',
-                                  type: FormFieldType.textarea,
-                                  hintText: 'Descripción opcional...',
-                                  icon: FontAwesomeIcons.pen,
-                                  helperText: 'Máximo 500 caracteres',
-                                ),
-                              ],
-                              onSave: () {
-                                Navigator.pop(context);
-                              },
-                              onCancel: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                onPress: () => fpc.showFormModal(
+                  context,
+                  'Registro de empleados',
+                  'Aquí podrás registrar tus nuevos empleados.',
+                ),
               ),
             ],
           ),
