@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sistema_facturacion/pantallas/categorias/categorias.dart';
 import 'package:sistema_facturacion/pantallas/clientes/clientes.dart';
 import 'package:sistema_facturacion/pantallas/empleados/empleados.dart';
 import 'package:sistema_facturacion/pantallas/facturacion/facturacion.dart';
+import 'package:sistema_facturacion/pantallas/informacion/informacion.dart';
+import 'package:sistema_facturacion/pantallas/inicio/inicio.dart';
 import 'package:sistema_facturacion/pantallas/layout/widgets/build_drawer_menu.dart';
 import 'package:sistema_facturacion/pantallas/productos/productos.dart';
+import 'package:sistema_facturacion/pantallas/roles/roles.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -39,16 +43,24 @@ class Dashboard extends StatelessWidget {
         return const ClientesPantalla();
       case 'Empleados':
         return const EmpleadosPantalla();
-      case 'Facturas':
+      case 'Facturación':
         return const FacturacionPantalla();
+      case 'Inicio':
+        return const InicioPantalla();
+      case 'Información':
+        return InformacionPantalla();
+      case 'Categorías':
+        return CategoriasPantalla();
+      case 'Roles':
+        return RolesPantalla();
       default:
-        return const ProductosPantalla();
+        return const InicioPantalla();
     }
   }
 }
 
 class ScreenProvider extends ChangeNotifier {
-  String _currentScreen = 'Productos';
+  String _currentScreen = 'Inicio';
 
   String get currentScreen => _currentScreen;
 

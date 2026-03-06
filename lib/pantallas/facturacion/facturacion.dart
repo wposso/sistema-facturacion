@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sistema_facturacion/modelos/facturas_model.dart';
+import 'package:sistema_facturacion/pantallas/layout/providers/forms_controller_provider.dart';
 import 'package:sistema_facturacion/pantallas/layout/widgets/build_content_container.dart';
 import 'package:sistema_facturacion/theme/theme_colors.dart';
 
@@ -9,9 +11,11 @@ class FacturacionPantalla extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provForm = Provider.of<FormsControllerProvider>(context);
     return BuildContentContainer(
+      form: provForm.showFormClients(),
       count: Facturas().facturasLista.length,
-      message: 'Empleados',
+      message: 'Facturación',
       columnLabels: columnasFacturas,
       rows: Facturas().facturasLista.map((item) {
         return DataRow(
@@ -53,10 +57,32 @@ class FacturacionPantalla extends StatelessWidget {
             DataCell(
               Container(
                 width: 100,
-                child: FaIcon(
-                  FontAwesomeIcons.penToSquare,
-                  size: 14,
-                  color: themeFontGreyColor,
+                child: Row(
+                  children: [
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: FaIcon(
+                          FontAwesomeIcons.penToSquare,
+                          size: 14,
+                          color: themeFontGreyColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: FaIcon(
+                          FontAwesomeIcons.trashCan,
+                          size: 14,
+                          color: themeFontGreyColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

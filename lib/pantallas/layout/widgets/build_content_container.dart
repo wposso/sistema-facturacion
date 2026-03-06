@@ -8,12 +8,14 @@ class BuildContentContainer extends StatelessWidget {
   final String message;
   final List<String> columnLabels;
   final List<DataRow> rows;
+  final Widget form;
   const BuildContentContainer({
     super.key,
     required this.count,
     required this.message,
     required this.columnLabels,
     required this.rows,
+    required this.form,
   });
 
   @override
@@ -28,6 +30,7 @@ class BuildContentContainer extends StatelessWidget {
           BuildIndicatorsContent(),
           SizedBox(height: 55),
           BuildTablesContent(
+            form: form,
             count: count,
             message: message,
             columnLabels: columnLabels,

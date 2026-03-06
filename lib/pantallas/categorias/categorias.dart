@@ -1,65 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sistema_facturacion/modelos/empleados_model.dart';
+import 'package:sistema_facturacion/modelos/categorias_model.dart';
 import 'package:sistema_facturacion/pantallas/layout/providers/forms_controller_provider.dart';
 import 'package:sistema_facturacion/pantallas/layout/widgets/build_content_container.dart';
 import 'package:sistema_facturacion/theme/theme_colors.dart';
 
-class EmpleadosPantalla extends StatelessWidget {
-  const EmpleadosPantalla({super.key});
+class CategoriasPantalla extends StatelessWidget {
+  const CategoriasPantalla({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provForm = Provider.of<FormsControllerProvider>(context);
+    final provform = Provider.of<FormsControllerProvider>(context);
     return BuildContentContainer(
-      form: provForm.showFormEmployees(),
-      count: Empleados().empleadosLista.length,
-      message: 'Empleados',
-      columnLabels: columnasEmpleados,
-      rows: Empleados().empleadosLista.map((item) {
+      count: Categorias().categoriasLista.length,
+      message: 'Categorías',
+      columnLabels: columnasCategorias,
+      rows: Categorias().categoriasLista.map((item) {
         return DataRow(
           cells: [
             DataCell(
               Container(
                 width: 100,
                 child: Text(
-                  item.nombreEmpleado,
+                  item.codigoCategoria,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ),
-            DataCell(
-              Container(
-                width: 100,
-                child: Text(item.documento, overflow: TextOverflow.ellipsis),
-              ),
-            ),
-            DataCell(
-              Container(
-                width: 100,
-                child: Text(item.rolEmpleado, overflow: TextOverflow.ellipsis),
-              ),
-            ),
-            DataCell(
-              Container(
-                width: 100,
-                child: Text(item.telefono, overflow: TextOverflow.ellipsis),
-              ),
-            ),
-            DataCell(
-              Container(
-                width: 100,
-                child: Text(item.email, overflow: TextOverflow.ellipsis),
               ),
             ),
             DataCell(
               Container(
                 width: 100,
                 child: Text(
-                  item.fechaIngreso.toString(),
+                  item.nombreCategoria,
                   overflow: TextOverflow.ellipsis,
                 ),
+              ),
+            ),
+            DataCell(
+              Container(
+                width: 100,
+                child: Text(item.descripcion, overflow: TextOverflow.ellipsis),
               ),
             ),
             DataCell(
@@ -97,6 +78,7 @@ class EmpleadosPantalla extends StatelessWidget {
           ],
         );
       }).toList(),
+      form: provform.showFormCategories(),
     );
   }
 }

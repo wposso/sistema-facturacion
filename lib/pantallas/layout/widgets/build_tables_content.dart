@@ -10,12 +10,14 @@ class BuildTablesContent extends StatelessWidget {
   final String message;
   final List<String> columnLabels;
   final List<DataRow> rows;
+  final Widget form;
   const BuildTablesContent({
     super.key,
     required this.count,
     required this.message,
     required this.columnLabels,
     required this.rows,
+    required this.form,
   });
 
   @override
@@ -49,7 +51,7 @@ class BuildTablesContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              '$count $message1',
+              '$count $message1 en total',
               style: TextStyle(
                 color: themeGreenColor,
                 fontSize: 13,
@@ -81,11 +83,7 @@ class BuildTablesContent extends StatelessWidget {
                 message: 'Agregar un $message1',
                 color: themeGreenColor,
                 isPrimary: true,
-                onPress: () => fpc.showFormModal(
-                  context,
-                  'Registro de empleados',
-                  'Aquí podrás registrar tus nuevos empleados.',
-                ),
+                onPress: () => fpc.showFormModal(context, form),
               ),
             ],
           ),
