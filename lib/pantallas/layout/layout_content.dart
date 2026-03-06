@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sistema_facturacion/pantallas/ayuda/ayuda.dart';
 import 'package:sistema_facturacion/pantallas/categorias/categorias.dart';
 import 'package:sistema_facturacion/pantallas/clientes/clientes.dart';
 import 'package:sistema_facturacion/pantallas/empleados/empleados.dart';
@@ -53,6 +54,8 @@ class Dashboard extends StatelessWidget {
         return CategoriasPantalla();
       case 'Roles':
         return RolesPantalla();
+      case 'Ayúda':
+        return AyudaPantalla();
       default:
         return const InicioPantalla();
     }

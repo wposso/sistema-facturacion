@@ -42,13 +42,10 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
-                      child: Text(
-                        'SF',
-                        style: TextStyle(
-                          color: themeGreenColor,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      child: FaIcon(
+                        FontAwesomeIcons.accusoft,
+                        color: themeGreenColor,
+                        size: 24,
                       ),
                     ),
                   ),

@@ -151,28 +151,37 @@ class BuildTablesContent extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SingleChildScrollView(
-            child: DataTable(
-              columnSpacing: 55,
-              headingRowHeight: 45,
-              dataRowHeight: 45,
-              headingTextStyle: TextStyle(
-                color: themeFontGreyColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.3,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: constraints.maxWidth, // 👈 ocupa todo el ancho
+                ),
+                child: DataTable(
+                  columnSpacing: 55,
+                  headingRowHeight: 45,
+                  dataRowHeight: 45,
+                  headingTextStyle: TextStyle(
+                    color: themeFontGreyColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.3,
+                  ),
+                  headingRowColor: WidgetStatePropertyAll(themeDrawerColor),
+                  dataTextStyle: TextStyle(
+                    color: themeBlackColor,
+                    fontSize: 13,
+                  ),
+                  columns: columnLabels
+                      .map((label) => DataColumn(label: Text(label)))
+                      .toList(),
+                  rows: rows,
+                ),
               ),
-              headingRowColor: WidgetStatePropertyAll(themeDrawerColor),
-              dataTextStyle: TextStyle(color: themeBlackColor, fontSize: 13),
-              decoration: BoxDecoration(color: themeBackgroundColor),
-              columns: columnLabels
-                  .map((label) => DataColumn(label: Text(label)))
-                  .toList(),
-              rows: rows,
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

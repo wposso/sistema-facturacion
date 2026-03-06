@@ -46,13 +46,10 @@ class BuildDrawerMenu extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Center(
-                    child: Text(
-                      'SF',
-                      style: TextStyle(
-                        color: themeGreenColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    child: FaIcon(
+                      FontAwesomeIcons.accusoft,
+                      color: themeGreenColor,
+                      size: 20,
                     ),
                   ),
                 ),
